@@ -15,7 +15,7 @@ class OcorrenciaController extends Controller
         
         $ocorrencias = Ocorrencia::with('usuario')->latest()->get();
         
-        // Se tiver usuário logado, verificamos quais ele apoiou
+        // Se tiver usuário logado, verifica quais ele apoiou
         if ($user) {
             $apoiadasIds = $user->ocorrenciasApoiadas()->pluck('ocorrencias.id')->toArray();
             
@@ -249,7 +249,7 @@ class OcorrenciaController extends Controller
 
             
 
-                        // Ocorrências apoiadas pelo usuário (usando o relacionamento many-to-many definido no Model Usuario)
+                        // Ocorrências apoiadas pelo usuário 
 
             
 

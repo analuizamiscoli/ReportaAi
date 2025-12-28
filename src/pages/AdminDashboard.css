@@ -7,7 +7,6 @@
     vertical-align: middle;
 }
 
-/* Estilo para padronizar os botões de ação */
 .admin-actions-cell {
     display: flex;
     gap: 8px;
@@ -27,8 +26,7 @@
     line-height: 1;
 }
 
-/* Ajuste específico para tirar a seta do dropdown se necessário, 
-   ou garantir que ela não aumente o botão */
+
 .admin-btn-fixed.dropdown-toggle::after {
     margin-left: 5px;
 }

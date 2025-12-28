@@ -10,7 +10,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/ocorrencias', [OcorrenciaController::class, 'index']);
 Route::get('/ocorrencias/{id}', [OcorrenciaController::class, 'show']);
 
-// Rotas protegidas (precisam de token)
+// Rotas protegidas 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
             
     
-            // Rota para atualização de status (deve ser protegida, idealmente só admin, mas vamos simplificar)
+            // Rota para atualização de status 
     
             Route::put('/ocorrencias/{id}/status', [OcorrenciaController::class, 'updateStatus']);
     

@@ -1,182 +1,210 @@
-# Manual de Instalação e Uso - Sistema "Reporta Aí"
+# Reporta Aí 📢
 
-Este manual tem o intuito de orientar a Instalação e uso do software Reporta Aí, nos sistemas windows e Linux. Caso seu sistema já tenha algum dos aplicativos instalados basta prosseguir para o próximo passo.
+O **Reporta Aí** é uma plataforma desenvolvida para facilitar a comunicação entre cidadãos e a administração pública. Através dele, usuários podem reportar problemas urbanos (como buracos, iluminação falha, lixo acumulado) e acompanhar o status das solicitações, enquanto administradores gerenciam e visualizam essas ocorrências em um mapa interativo.
 
+---
 
+## 🚀 Manual de Instalação e Uso
 
+Este guia orienta a instalação e execução do projeto em ambientes **Windows** e **Linux**.
 
+### 📋 Índice
+- [Windows](#windows)
+- [Linux](#linux)
+- [Como Usar (Login)](#como-usar)
+
+---
 
 ## Windows
 
+### 1) Instalação das Ferramentas Necessárias
 
-## 1)  Instalação das Ferramentas Necessárias
+Caso já tenha alguma instalada, pule para a próxima.
 
-   1. Git (Controle de Versão)
-   * Baixe em: git-scm.com/download/win (https://git-scm.com/download/win)
-   * Instalação: Pode clicar em "Next" (Próximo) em todas as telas até finalizar.
+1.  **Git (Controle de Versão)**
+    *   Baixe em: [git-scm.com](https://git-scm.com/download/win)
+    *   Instalação: Padrão (Next até o fim).
 
- 2. XAMPP (Servidor e Banco de Dados)
-   * Baixe em: apachefriends.org (https://www.apachefriends.org/pt_br/download.html)
-   * Importante: Baixe a versão com PHP 8.2 ou superior.
-   * Instalação: Instale no local padrão (C:\xampp).
-   * Após instalar: Abra o "XAMPP Control Panel" e clique no botão Start ao lado de Apache e MySQL. Eles devem ficar verdes.
+2.  **XAMPP (Servidor e Banco de Dados)**
+    *   Baixe em: [apachefriends.org](https://www.apachefriends.org/pt_br/download.html)
+    *   **Importante:** Baixe a versão com **PHP 8.2** ou superior.
+    *   Instalação: Local padrão (`C:\xampp`).
+    *   *Pós-instalação:* Abra o "XAMPP Control Panel" e inicie (**Start**) o **Apache** e o **MySQL**.
 
-  3. Composer (Gerenciador do PHP/Backend)
-   * Baixe em: getcomposer.org/Composer-Setup.exe (https://getcomposer.org/Composer-Setup.exe)
-   * Instalação: Durante a instalação, ele pedirá para escolher o "PHP". Selecione o arquivo em C:\xampp\php\php.exe. Marque a opção para adicionar ao "PATH". 
+3.  **Composer (Gerenciador do Backend)**
+    *   Baixe em: [getcomposer.org](https://getcomposer.org/Composer-Setup.exe)
+    *   Instalação: Durante a instalação, ele pedirá para escolher o PHP. Selecione o arquivo em `C:\xampp\php\php.exe`. Marque a opção "Add to PATH".
 
-  4. Node.js (Gerenciador do React/Frontend)
-   * Baixe em: nodejs.org (https://nodejs.org/)
-   * Versão: Escolha a versão LTS (Recomendada).
-   * Instalação: Clique em "Next" até finalizar.
+4.  **Node.js (Gerenciador do Frontend)**
+    *   Baixe em: [nodejs.org](https://nodejs.org/)
+    *   Versão: **LTS** (Recomendada).
+    *   Instalação: Padrão (Next até o fim).
 
-## 2) Configuração do banco de dados
-   1. Certifique-se que o MySQL está rodando no painel do XAMPP (botão Start).
-   2. Abra seu navegador e acesse: http://localhost/phpmyadmin
-   3. Clique na aba "Base de Dados" (Databases).
-   4. No campo "Nome da base de dados", digite: reportaai
-   5. Clique em Criar.
-   6. Abra o Xampp clique em start no "Apache" e no "MySQL"
-## 3) Configurando o Backend
+### 2) Configuração do Banco de Dados
 
-1. Abra a pasta do projeto reportaai.
-2. Entre na pasta backend.
-3. Clique com o botão direito em um espaço vazio da pasta e escolha "Open Git Bash here" (ou abra o terminal/PowerShell e navegue até essa pasta).
-4. Execute os comandos abaixo, um por um (espere um terminar para rodar o próximo):
+1.  Certifique-se que o MySQL está rodando no painel do XAMPP (botão Start).
+2.  Abra seu navegador e acesse: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
+3.  Clique na aba **Base de Dados** (Databases).
+4.  No campo "Nome da base de dados", digite: `reportaai`
+5.  Clique em **Criar**.
 
-          a) Instalar as dependências do Laravel
-                composer install
-    
-          b) Configurar o arquivo de ambiente (copiar o exemplo)
-                cp .env.example .env
-     
-          c) Gerar a chave de criptografia do sistema
-                php artisan key:generate
-     
-          d) Configurar a conexão com o banco (ajuste se seu XAMPP tiver senha)
-                # Abra o arquivo .env no bloco de notas e verifique se está assim:
-                # DB_DATABASE=reportaai
-                # DB_USERNAME=root
-                # DB_PASSWORD=
-    
-          e) Criar as tabelas no banco de dados e criar o usuário Admin
-                php artisan migrate --seed
-    
-          f) Liberar o acesso às fotos (MUITO IMPORTANTE)
-                php artisan storage:link
-Obs: Caso aparecer a mensagem "link already exists" durante o passo f, apague a pasta storage de DENTRO DO PUBLIC e rode o comando php artisan storage:link, confira se aparece o ícone de atalho na pasta (Seta no canto inferior)
+### 3) Configurando o Backend (Laravel)
 
-   5. Deixe rodando: Por fim, execute o comando para ligar o servidor:
+1.  Abra a pasta `backend`.
+2.  Clique com o botão direito em um espaço vazio e escolha "Open Git Bash here" (ou use o terminal de sua preferência).
+3.  Execute os comandos abaixo, um por um:
 
-            php artisan serve
-Não feche essa janela preta! O backend precisa dela aberta para funcionar.
-## 4) Frotend
- 1. Volte para a pasta raiz do projeto reportaai (onde tem o arquivo package.json).
-2. Abra outro terminal (pode ser Git Bash ou PowerShell) nesta pasta.
-3. Execute os comandos:
+    ```bash
+    # a) Instalar as dependências do Laravel
+    composer install
 
-         a) Instalar as dependências do React
-                npm install
-    
-        b) Iniciar o site
-                npm start
+    # b) Configurar o arquivo de ambiente (copiar o exemplo)
+    cp .env.example .env
 
-4. O navegador deve abrir automaticamente no endereço http://localhost:3000.
+    # c) Gerar a chave de criptografia do sistema
+    php artisan key:generate
+    ```
 
-## 5) Como usar
+4.  **Configurar Banco:** Abra o arquivo `.env` (criado no passo anterior) no bloco de notas e verifique se as configurações estão assim:
+    ```env
+    DB_DATABASE=reportaai
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+    *(Se você configurou senha no seu XAMPP, adicione-a em DB_PASSWORD)*
 
-* Login como administrador
+5.  Volte ao terminal e continue:
+    ```bash
+    # e) Criar as tabelas no banco de dados e criar o usuário Admin
+    php artisan migrate --seed
 
-        email: admin@fiscalizajf.com
-        senha: senha123
+    # f) Liberar o acesso às fotos (IMPORTANTE)
+    php artisan storage:link
+    ```
+    *Obs: Se aparecer "link already exists", apague a pasta `public/storage` e rode o comando novamente.*
 
-* Login como cidadão
+6.  **Iniciar o servidor:**
+    ```bash
+    php artisan serve
+    ```
+    ⚠️ **Não feche essa janela!** O backend precisa dela para funcionar.
 
-        clique em cadastre-se e insira seus dados
+### 4) Configurando o Frontend (React)
+
+1.  Volte para a pasta raiz do projeto `reportaai` (onde tem o arquivo `package.json`).
+2.  Abra outro terminal nesta pasta.
+3.  Execute os comandos:
+
+    ```bash
+    # a) Instalar as dependências do React
+    npm install
+
+    # b) Iniciar o site
+    npm start
+    ```
+
+4.  O navegador deve abrir automaticamente em [http://localhost:3000](http://localhost:3000).
+
+---
+
+## Como Usar
+
+### Credenciais de Acesso (Ambiente de Teste)
+
+Para testar as funcionalidades administrativas, utilize o usuário pré-criado (Seed):
+
+| Tipo de Usuário | Email | Senha |
+| :--- | :--- | :--- |
+| **Administrador** | `admin@reportaaijf.com` | `modelagem2025@` |
+| **Cidadão** | (Clique em "Cadastre-se" na tela inicial) | (Insira seus dados) |
+
+---
 
 ## Linux
-## 1) Instação das ferramentas
 
-1. Git (Geralmente já vem instalado, mas caso não vier)
+### 1) Instalação das Ferramentas
 
-        sudo apt update
-        sudo apt install git
+1.  **Git:**
+    ```bash
+    sudo apt update
+    sudo apt install git
+    ```
 
-2. PHP, MySQL e Apache (substituem o XAMPP)
+2.  **PHP, MySQL e Apache:**
+    ```bash
+    sudo apt install apache2 mysql-server php php-mysql php-cli php-xml php-mbstring php-curl php-zip unzip
+    ```
+    *Verificar se estão rodando:* `sudo systemctl status apache2` e `sudo systemctl status mysql`.
 
-        sudo apt install apache2 mysql-server php php-mysql php-cli php-xml php-mbstring php-curl php-zip unzip
-    
-Obs: MySQL e Apache iniciam automaticamente e não existe XAMPP control panel. Para verificar se estão rodando:
+3.  **Composer:**
+    ```bash
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    php composer-setup.php
+    sudo mv composer.phar /usr/local/bin/composer
+    ```
+    *Teste:* `composer --version`
 
-        sudo systemctl status apache2
-        sudo systemctl status mysql
+4.  **Node.js e npm:**
+    ```bash
+    sudo apt install nodejs npm
+    ```
+    *Teste:* `node -v` e `npm -v`
 
-3. Composer (Instalado via terminal)
+### 2) Configuração do Banco de Dados
 
-        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        php composer-setup.php
-        sudo mv composer.phar /usr/local/bin/composer
-    Teste:
-        
-        composer --version
+1.  Acesse o shell do MySQL:
+    ```bash
+    sudo mysql
+    ```
+2.  Crie o banco:
+    ```sql
+    CREATE DATABASE reportaai;
+    EXIT;
+    ```
 
-4. Node.js e npm (Instalados via repositório oficial)
+### 3) Configurando o Backend
 
-        sudo apt install nodejs npm
-    Teste:
+No terminal (na pasta `backend`):
 
-        node -v
-        npm -v
+```bash
+# Copiar .env
+cp .env.example .env
 
+# Permissões de escrita (Essencial no Linux)
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R $USER:www-data storage bootstrap/cache
 
+# Instalar dependências e gerar chave
+composer install
+php artisan key:generate
 
+# Edite o .env se necessário (DB_PASSWORD), depois migre:
+php artisan migrate --seed
 
+# Link simbólico para imagens
+php artisan storage:link
 
+# Rodar servidor
+php artisan serve
+```
 
+### 4) Frontend
 
+Na raiz do projeto (pasta `reportaai`):
+```bash
+npm install
+npm start
+```
 
-## 2) Configuração do banco de dados
-Criar banco no MySQL
+---
 
-        sudo mysql
-Dentro do MySQL
+## Como Usar
 
-        CREATE DATABASE reportaai;
-        EXIT;
+### Credenciais de Acesso (Ambiente de Teste)
 
-No .env
+Para testar as funcionalidades administrativas, utilize o usuário pré-criado (Seed):
 
-        DB_DATABASE=reportaai
-        DB_USERNAME=root
-        DB_PASSWORD=
-
-
-
-## 3) Configurando o backend
-
-No terminal em vez de Git Bash / PowerShell, use:
-Terminal padrão da distro
-
-Copiar arquivo .env
-
-        cp .env.example .env
-
-Permissões!
-
-        sudo chmod -R 775 storage bootstrap/cache
-        sudo chown -R $USER:www-data storage bootstrap/cache
-
-storage
-
-        php artisan storage:link
-
-
-
-## 4) Frontend
-
-        npm install
-        npm start
-
-Site abre em:
-
-        http://localhost:3000
+| Tipo de Usuário | Email | Senha |
+| :--- | :--- | :--- |
+| **Administrador** | `admin@reportaaijf.com` | `modelagem2025@` |
+| **Cidadão** | (Clique em "Cadastre-se" na tela inicial) | (Insira seus dados) |

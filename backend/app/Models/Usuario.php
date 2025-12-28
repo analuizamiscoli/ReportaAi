@@ -31,13 +31,13 @@ class Usuario extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Relacionamento: Um usuário pode ter várias ocorrências (1:N)
+    // Relacionamento: Um usuário pode ter várias ocorrências 
     public function ocorrencias()
     {
         return $this->hasMany(Ocorrencia::class, 'id_usuario');
     }
 
-    // Relacionamento: Um usuário pode apoiar várias ocorrências (N:N)
+    // Relacionamento: Um usuário pode apoiar várias ocorrências 
     public function ocorrenciasApoiadas()
     {
         return $this->belongsToMany(Ocorrencia::class, 'apoios', 'id_usuario', 'id_ocorrencia')

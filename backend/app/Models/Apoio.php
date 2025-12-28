@@ -14,9 +14,6 @@ class Apoio extends Model
         'id_ocorrencia',
     ];
 
-    // Como é uma tabela pivô sem ID auto-incremento (chave composta), desativamos o incremento
     public $incrementing = false;
-
-    // Definimos a chave primária como null ou um array (o Eloquent não suporta chaves compostas nativamente para find(), mas isso evita erros de int)
     protected $primaryKey = null;
 }
