@@ -1,0 +1,19 @@
+
+.occurrence-card {
+  margin-bottom: 20px;
+}
+
+.occurrence-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}

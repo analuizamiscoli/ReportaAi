@@ -1,0 +1,38 @@
+
+.landing-page {
+  height: 100vh;
+  background-image: url('../assets/jf-city.jpg'); 
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+}
+
+.landing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.landing-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.landing-slogan {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}

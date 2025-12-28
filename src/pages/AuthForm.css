@@ -1,0 +1,24 @@
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-grey);
+}
+
+.auth-form-container {
+    max-width: 450px;
+    width: 100%;
+}
+
+.auth-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--pjf-primary);
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin-bottom: 2rem;
+}

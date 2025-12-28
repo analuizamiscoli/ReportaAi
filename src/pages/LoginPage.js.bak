@@ -1,0 +1,73 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Card, Form, Button } from 'react-bootstrap';
+import BackButton from '../components/BackButton';
+import './AuthForm.css';
+
+// Página de Login
+function LoginPage() {
+  // Hook para navegação programática (redirecionar o usuário após o login).
+  const navigate = useNavigate();
+  // Estado para controlar se o checkbox "Acessar como administrador" está marcado.
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Função chamada quando o formulário de login é enviado.
+  const handleLogin = (e) => {
+    e.preventDefault(); // Impede que a página recarregue.
+    
+    // Lógica de autenticação simulada.
+    // Em um app real, aqui haveria uma chamada para a API para validar o usuário e senha.
+    if (isAdmin) {
+        console.log('Admin logado!');
+        navigate('/admin'); // Se for admin, redireciona para o painel de admin.
+    } else {
+        console.log('Usuário logado!');
+        navigate('/mapa'); // Se for usuário comum, redireciona para o mapa.
+    }
+  };
+
+  return (
+    <div className="auth-page">
+        <BackButton to="/" />
+        <div className="auth-form-container">
+            <Link to="/" className="auth-logo">Reporta Aí</Link>
+            <Card>
+                <Card.Body>
+                <Card.Title as="h2" className="text-center mb-4">Entrar</Card.Title>
+                <Form onSubmit={handleLogin}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" placeholder="seu@email.com" required />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Senha</Form.Label>
+                    <Form.Control type="password" placeholder="Senha" required />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Check 
+                            type="checkbox" 
+                            label="Acessar como administrador"
+                            checked={isAdmin}
+                            onChange={(e) => setIsAdmin(e.target.checked)}
+                        />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit" className="w-100">
+                    Entrar
+                    </Button>
+                </Form>
+                </Card.Body>
+                <Card.Footer className="text-center">
+                    <small className="text-muted">
+                        Não tem uma conta? <Link to="/signup">Cadastre-se</Link>
+                    </small>
+                </Card.Footer>
+            </Card>
+        </div>
+    </div>
+  );
+}
+
+export default LoginPage;

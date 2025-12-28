@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# Manual de Instalação e Uso - Sistema "Reporta Aí"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este manual tem o intuito de orientar a Instalação e uso do software Reporta Aí, nos sistemas windows e Linux. Caso seu sistema já tenha algum dos aplicativos instalados basta prosseguir para o próximo passo.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Windows
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 1)  Instalação das Ferramentas Necessárias
 
-### `npm run build`
+   1. Git (Controle de Versão)
+   * Baixe em: git-scm.com/download/win (https://git-scm.com/download/win)
+   * Instalação: Pode clicar em "Next" (Próximo) em todas as telas até finalizar.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ 2. XAMPP (Servidor e Banco de Dados)
+   * Baixe em: apachefriends.org (https://www.apachefriends.org/pt_br/download.html)
+   * Importante: Baixe a versão com PHP 8.2 ou superior.
+   * Instalação: Instale no local padrão (C:\xampp).
+   * Após instalar: Abra o "XAMPP Control Panel" e clique no botão Start ao lado de Apache e MySQL. Eles devem ficar verdes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  3. Composer (Gerenciador do PHP/Backend)
+   * Baixe em: getcomposer.org/Composer-Setup.exe (https://getcomposer.org/Composer-Setup.exe)
+   * Instalação: Durante a instalação, ele pedirá para escolher o "PHP". Selecione o arquivo em C:\xampp\php\php.exe. Marque a opção para adicionar ao "PATH". 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  4. Node.js (Gerenciador do React/Frontend)
+   * Baixe em: nodejs.org (https://nodejs.org/)
+   * Versão: Escolha a versão LTS (Recomendada).
+   * Instalação: Clique em "Next" até finalizar.
 
-### `npm run eject`
+## 2) Configuração do banco de dados
+   1. Certifique-se que o MySQL está rodando no painel do XAMPP (botão Start).
+   2. Abra seu navegador e acesse: http://localhost/phpmyadmin
+   3. Clique na aba "Base de Dados" (Databases).
+   4. No campo "Nome da base de dados", digite: reportaai
+   5. Clique em Criar.
+   6. Abra o Xampp clique em start no "Apache" e no "MySQL"
+## 3) Configurando o Backend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Abra a pasta do projeto reportaai.
+2. Entre na pasta backend.
+3. Clique com o botão direito em um espaço vazio da pasta e escolha "Open Git Bash here" (ou abra o terminal/PowerShell e navegue até essa pasta).
+4. Execute os comandos abaixo, um por um (espere um terminar para rodar o próximo):
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+          a) Instalar as dependências do Laravel
+                composer install
+    
+          b) Configurar o arquivo de ambiente (copiar o exemplo)
+                cp .env.example .env
+     
+          c) Gerar a chave de criptografia do sistema
+                php artisan key:generate
+     
+          d) Configurar a conexão com o banco (ajuste se seu XAMPP tiver senha)
+                # Abra o arquivo .env no bloco de notas e verifique se está assim:
+                # DB_DATABASE=reportaai
+                # DB_USERNAME=root
+                # DB_PASSWORD=
+    
+          e) Criar as tabelas no banco de dados e criar o usuário Admin
+                php artisan migrate --seed
+    
+          f) Liberar o acesso às fotos (MUITO IMPORTANTE)
+                php artisan storage:link
+Obs: Caso aparecer a mensagem "link already exists" durante o passo f, apague a pasta storage de DENTRO DO PUBLIC e rode o comando php artisan storage:link, confira se aparece o ícone de atalho na pasta (Seta no canto inferior)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   5. Deixe rodando: Por fim, execute o comando para ligar o servidor:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+            php artisan serve
+Não feche essa janela preta! O backend precisa dela aberta para funcionar.
+## 4) Frotend
+ 1. Volte para a pasta raiz do projeto reportaai (onde tem o arquivo package.json).
+2. Abra outro terminal (pode ser Git Bash ou PowerShell) nesta pasta.
+3. Execute os comandos:
 
-## Learn More
+         a) Instalar as dependências do React
+                npm install
+    
+        b) Iniciar o site
+                npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. O navegador deve abrir automaticamente no endereço http://localhost:3000.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 5) Como usar
 
-### Code Splitting
+* Login como administrador
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+        email: admin@fiscalizajf.com
+        senha: senha123
 
-### Analyzing the Bundle Size
+* Login como cidadão
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+        clique em cadastre-se e insira seus dados
 
-### Making a Progressive Web App
+## Linux
+## 1) Instação das ferramentas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Git (Geralmente já vem instalado, mas caso não vier)
 
-### Advanced Configuration
+        sudo apt update
+        sudo apt install git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. PHP, MySQL e Apache (substituem o XAMPP)
 
-### Deployment
+        sudo apt install apache2 mysql-server php php-mysql php-cli php-xml php-mbstring php-curl php-zip unzip
+    
+Obs: MySQL e Apache iniciam automaticamente e não existe XAMPP control panel. Para verificar se estão rodando:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+        sudo systemctl status apache2
+        sudo systemctl status mysql
 
-### `npm run build` fails to minify
+3. Composer (Instalado via terminal)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        php composer-setup.php
+        sudo mv composer.phar /usr/local/bin/composer
+    Teste:
+        
+        composer --version
+
+4. Node.js e npm (Instalados via repositório oficial)
+
+        sudo apt install nodejs npm
+    Teste:
+
+        node -v
+        npm -v
+
+
+
+
+
+
+
+
+## 2) Configuração do banco de dados
+Criar banco no MySQL
+
+        sudo mysql
+Dentro do MySQL
+
+        CREATE DATABASE reportaai;
+        EXIT;
+
+No .env
+
+        DB_DATABASE=reportaai
+        DB_USERNAME=root
+        DB_PASSWORD=
+
+
+
+## 3) Configurando o backend
+
+No terminal em vez de Git Bash / PowerShell, use:
+Terminal padrão da distro
+
+Copiar arquivo .env
+
+        cp .env.example .env
+
+Permissões!
+
+        sudo chmod -R 775 storage bootstrap/cache
+        sudo chown -R $USER:www-data storage bootstrap/cache
+
+storage
+
+        php artisan storage:link
+
+
+
+## 4) Frontend
+
+        npm install
+        npm start
+
+Site abre em:
+
+        http://localhost:3000

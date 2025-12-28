@@ -1,0 +1,27 @@
+
+.category-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.category-card.selected {
+  border-color: var(--pjf-primary);
+}
+
+.upload-area {
+  border: 2px dashed #ced4da;
+  border-radius: 5px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-area:hover {
+  background-color: #f8f9fa;
+}
+
+.mini-map {
+  height: 200px;
+  width: 100%;
+}
