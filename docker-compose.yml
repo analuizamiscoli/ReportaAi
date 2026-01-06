@@ -1,0 +1,52 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: reportaai_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reportaai
+    ports:
+      - "3588:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # Serviço da API (Laravel)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: reportaai_backend
+    restart: unless-stopped
+    working_dir: /var/www/html
+    ports:
+      - "6588:8000"
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: reportaai
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    depends_on:
+      - db
+
+  # Serviço do Frontend (React)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: reportaai_frontend
+    ports:
+      - "4588:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
