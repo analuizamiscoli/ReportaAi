@@ -1,7 +1,7 @@
 
 .landing-page {
   height: 100vh;
-  background-image: url('../assets/jf-city.jpg'); 
+  background-image: url('../assets/jf-city.jpeg'); 
   background-size: cover;
   background-position: center;
   position: relative;
@@ -14,7 +14,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,10 +29,12 @@
   font-weight: 700;
   color: white;
   text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .landing-slogan {
   font-size: 18px;
   margin-top: 10px;
   margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
