@@ -1,6 +1,6 @@
 
 .landing-page {
-  height: 100vh;
+  min-height: 100vh;
   background-image: url('../assets/jf-city.jpeg'); 
   background-size: cover;
   background-position: center;
