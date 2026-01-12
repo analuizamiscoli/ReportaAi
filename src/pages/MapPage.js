@@ -15,12 +15,14 @@ const statusIcons = {
     reported: new L.DivIcon({ className: 'custom-div-icon', html: `<div style='background-color:var(--status-reported);' class='marker-pin'></div>` }),
     'in-progress': new L.DivIcon({ className: 'custom-div-icon', html: `<div style='background-color:var(--status-in-progress);' class='marker-pin'></div>` }),
     resolved: new L.DivIcon({ className: 'custom-div-icon', html: `<div style='background-color:var(--status-resolved);' class='marker-pin'></div>` }),
+    refused: new L.DivIcon({ className: 'custom-div-icon', html: `<div style='background-color:var(--status-refused);' class='marker-pin'></div>` }),
 };
 
 const statusConfig = {
     reported: { label: 'Reportado', color: 'var(--status-reported)', bg: 'danger' },
     'in-progress': { label: 'Em Andamento', color: 'var(--status-in-progress)', bg: 'warning' },
     resolved: { label: 'Resolvido', color: 'var(--status-resolved)', bg: 'success' },
+    refused: { label: 'Recusado', color: 'var(--status-refused)', bg: 'refused' },
 };
 
 function MapPage({ occurrences, setOccurrences, onNewOccurrence }) {
@@ -36,6 +38,7 @@ function MapPage({ occurrences, setOccurrences, onNewOccurrence }) {
     reported: true,
     'in-progress': true,
     resolved: true,
+    refused: true,
   });
 
   useEffect(() => {

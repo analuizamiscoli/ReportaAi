@@ -9,6 +9,7 @@ const statusConfig = {
   reported: { label: 'Reportado', bg: 'danger' },
   'in-progress': { label: 'Em Andamento', bg: 'warning' },
   resolved: { label: 'Resolvido', bg: 'success' },
+  refused: { label: 'Recusado', bg: 'refused' },
 };
 
 function AdminDashboard({ allOccurrences, onStatusChange }) {
@@ -65,6 +66,7 @@ function AdminDashboard({ allOccurrences, onStatusChange }) {
     reported: allOccurrences.filter(o => o.status === 'reported').length,
     inProgress: allOccurrences.filter(o => o.status === 'in-progress').length,
     resolved: allOccurrences.filter(o => o.status === 'resolved').length,
+    refused: allOccurrences.filter(o => o.status === 'refused').length,
   };
 
   const getSortArrow = (key) => {
@@ -84,9 +86,10 @@ function AdminDashboard({ allOccurrences, onStatusChange }) {
         </div>
 
         <Row className="my-4">
-            <Col md={4}><Card><Card.Body className="text-center"><Card.Title>Reportadas</Card.Title><h2>{summary.reported}</h2></Card.Body></Card></Col>
-            <Col md={4}><Card><Card.Body className="text-center"><Card.Title>Em Andamento</Card.Title><h2>{summary.inProgress}</h2></Card.Body></Card></Col>
-            <Col md={4}><Card><Card.Body className="text-center"><Card.Title>Resolvidas</Card.Title><h2>{summary.resolved}</h2></Card.Body></Card></Col>
+            <Col md={3}><Card><Card.Body className="text-center"><Card.Title>Reportadas</Card.Title><h2>{summary.reported}</h2></Card.Body></Card></Col>
+            <Col md={3}><Card><Card.Body className="text-center"><Card.Title>Em Andamento</Card.Title><h2>{summary.inProgress}</h2></Card.Body></Card></Col>
+            <Col md={3}><Card><Card.Body className="text-center"><Card.Title>Resolvidas</Card.Title><h2>{summary.resolved}</h2></Card.Body></Card></Col>
+            <Col md={3}><Card><Card.Body className="text-center"><Card.Title>Recusados</Card.Title><h2>{summary.refused}</h2></Card.Body></Card></Col>
         </Row>
 
         <Card>
@@ -102,6 +105,7 @@ function AdminDashboard({ allOccurrences, onStatusChange }) {
                                 <option value="reported">Reportado</option>
                                 <option value="in-progress">Em Andamento</option>
                                 <option value="resolved">Resolvido</option>
+                                <option value="refused">Recusado</option>
                             </Form.Select>
                         </Col>
                     </Form.Group>
@@ -150,6 +154,7 @@ function AdminDashboard({ allOccurrences, onStatusChange }) {
                             <Dropdown.Item onClick={() => onStatusChange(occ.id, 'reported')}>Reportado</Dropdown.Item>
                             <Dropdown.Item onClick={() => onStatusChange(occ.id, 'in-progress')}>Em Andamento</Dropdown.Item>
                             <Dropdown.Item onClick={() => onStatusChange(occ.id, 'resolved')}>Resolvido</Dropdown.Item>
+                            <Dropdown.Item onClick={() => onStatusChange(occ.id, 'refused')}>Recusado</Dropdown.Item>
                         </DropdownButton>
                       </div>
                     </td>

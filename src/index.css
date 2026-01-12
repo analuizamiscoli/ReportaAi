@@ -12,8 +12,15 @@
   --status-reported: #dc3545;
   --status-in-progress: #ffc107;
   --status-resolved: #28a745;
+  --status-refused: #fd7e14;
   --background-light: #FFFFFF;
   --background-grey: #f8f9fa;
+}
+
+/* Custom Background for Badge */
+.bg-refused {
+  background-color: var(--status-refused) !important;
+  color: white;
 }
 
 /* 1.2. Tipografia */

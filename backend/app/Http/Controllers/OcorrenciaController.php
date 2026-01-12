@@ -365,7 +365,7 @@ class OcorrenciaController extends Controller
 
             
 
-                                'status' => ['required', \Illuminate\Validation\Rule::in(['Reportado', 'Em Andamento', 'Resolvido'])]
+                                'status' => ['required', \Illuminate\Validation\Rule::in(['Reportado', 'Em Andamento', 'Resolvido', 'Recusada'])]
 
             
 

@@ -10,6 +10,7 @@ const statusConfig = {
   reported: { label: 'Reportado', color: 'var(--status-reported)' },
   'in-progress': { label: 'Em Andamento', color: 'var(--status-in-progress)' },
   resolved: { label: 'Resolvido', color: 'var(--status-resolved)' },
+  refused: { label: 'Recusada', color: 'var(--status-refused)' },
 };
 
 // Componente reutilizável para mostrar um card de ocorrência.
@@ -68,7 +69,8 @@ function UserDashboard() {
     id: occ.id,
     category: occ.categoria,
     status: occ.status === 'Reportado' ? 'reported' : 
-            occ.status === 'Em Andamento' ? 'in-progress' : 'resolved',
+            occ.status === 'Em Andamento' ? 'in-progress' : 
+            occ.status === 'Resolvido' ? 'resolved' : 'refused',
     photo: occ.url_foto,
     address: `${occ.rua}, ${occ.numero}, ${occ.bairro}`,
     date: occ.created_at,

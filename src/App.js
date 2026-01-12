@@ -22,7 +22,8 @@ function App() {
         pos: [parseFloat(occ.latitude), parseFloat(occ.longitude)],
         category: occ.categoria,
         status: occ.status === 'Reportado' ? 'reported' : 
-                occ.status === 'Em Andamento' ? 'in-progress' : 'resolved',
+                occ.status === 'Em Andamento' ? 'in-progress' : 
+                occ.status === 'Resolvido' ? 'resolved' : 'refused',
         photo: occ.url_foto,
         description: occ.descricao,
         supporters: occ.contagem_apoios,
@@ -77,7 +78,8 @@ function App() {
     const statusMap = {
         'reported': 'Reportado',
         'in-progress': 'Em Andamento',
-        'resolved': 'Resolvido'
+        'resolved': 'Resolvido',
+        'refused': 'Recusada'
     };
 
     const newStatusLabel = statusMap[newStatusKey];
