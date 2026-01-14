@@ -9,11 +9,64 @@ O **Reporta Aí** é uma plataforma desenvolvida para facilitar a comunicação 
 Este guia orienta a instalação e execução do projeto em ambientes **Windows** e **Linux**.
 
 ### 📋 Índice
+- [Docker (Recomendado)](#docker-recomendado)
 - [Windows](#windows)
 - [Linux](#linux)
 - [Como Usar (Login)](#como-usar)
 
 ---
+
+## Docker (Recomendado)
+
+Este método sobe **Banco (MySQL)**, **Backend (Laravel)** e **Frontend (React)** via `docker compose`, usando portas alternativas para evitar conflitos:
+
+- Frontend (React): `http://localhost:4588`
+- Backend (Laravel API): `http://localhost:6588`
+- MySQL: `localhost:3588` (usuário `root`, senha `root`, banco `reportaai`)
+
+### 1) Pré-requisitos
+
+- Docker Engine + Docker Compose (plugin) instalados.
+- No Linux, certifique-se de conseguir rodar Docker sem `sudo` (ou use `sudo` nos comandos).
+
+### 2) Subir os containers
+
+Na raiz do projeto (onde está o `docker-compose.yml`):
+
+```bash
+docker compose up -d --build
+```
+
+Para checar status:
+
+```bash
+docker compose ps
+```
+
+### 3) Inicializar o Laravel (primeira vez)
+
+Na primeira execução (ou sempre que você apagar volumes), rode dentro do container do backend:
+
+```bash
+docker compose exec backend sh -lc "cp -n .env.example .env && composer install && php artisan key:generate && php artisan migrate --seed && php artisan storage:link"
+```
+
+### 4) Acessar a aplicação
+
+- Frontend: `http://localhost:4588`
+- Backend: `http://localhost:6588`
+
+### Parar / resetar
+
+```bash
+# parar mantendo o banco (volume)
+docker compose down
+
+# reset completo (apaga o banco)
+docker compose down -v
+```
+
+> Dica: se você estiver usando uma versão antiga, troque `docker compose` por `docker-compose`.
 
 ## Windows
 
